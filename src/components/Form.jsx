@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-// import { PersonalInfoFields } from "./PersonalInfoFields";
 import { useState } from "react";
 import { EducationFields } from "./EducationFields";
+import { PersonalFields } from "./PersonalFields";
 
 export function Form({
   general,
@@ -18,38 +18,7 @@ export function Form({
       : [{ school: "", study: "", degree: "", start: "", end: "" }]
   );
 
-  const addEducationFields = () => {
-    let newField = { school: "", study: "", degree: "", start: "", end: "" };
-    setEducationInputFields([...educationInputFields, newField]);
-  };
-
-  const handleFormChange = (index, event) => {
-    let data = [...educationInputFields];
-    data[index][event.target.name] = event.target.value;
-    setEducationInputFields(data);
-  };
-
-  const submitForm = (e) => {
-    e.preventDefault();
-    updateGeneral(personalInfo);
-    // not quite right because want to remove if object in arr only has empty string values
-    // want to do validations? and cleaning here before updating
-    updateEducation(educationInputFields.filter(elem => !isEmpty(elem)));
-    updateExperience(experienceInputFields.filter(elem => !isEmpty(elem)));
-    updateStatus();
-  };
-
-  const cancelForm = () => {
-    updateStatus();
-  };
-
   const [personalInfo, setPersonalInfo] = useState(general);
-
-  const updatePersonalInfo = (event) => {
-    let data = { ...personalInfo };
-    data[event.target.name] = event.target.value;
-    setPersonalInfo(data);
-  };
 
   const [experienceInputFields, setExperienceInputFields] = useState(
     experience.length > 0
@@ -96,32 +65,33 @@ export function Form({
     setEducationInputFields(newValue);
   }
 
+  const updatePersonal = (newValue) => {
+    setPersonalInfo(newValue);
+  }
+
+  // end callbacks for components
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    updateGeneral(personalInfo);
+    // not quite right because want to remove if object in arr only has empty string values
+    // want to do validations? and cleaning here before updating
+    updateEducation(educationInputFields.filter((elem) => !isEmpty(elem)));
+    updateExperience(experienceInputFields.filter((elem) => !isEmpty(elem)));
+    updateStatus();
+  };
+
+  const cancelForm = () => {
+    updateStatus();
+  };
+
   return (
     <div>
       <h2>Personal Info:</h2>
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          name="name"
-          type="text"
-          value={personalInfo.name}
-          onChange={(e) => updatePersonalInfo(e)}
-        ></input>
-        <label htmlFor="email">Email:</label>
-        <input
-          name="email"
-          type="email"
-          value={personalInfo.email}
-          onChange={(e) => updatePersonalInfo(e)}
-        ></input>
-        <label htmlFor="phone">Phone Number:</label>
-        <input
-          name="phone"
-          type="tel"
-          value={personalInfo.phone}
-          onChange={(e) => updatePersonalInfo(e)}
-        ></input>
-      </div>
+      <PersonalFields 
+        personalInput={personalInfo}
+        updateInput={updatePersonal}
+      />
 
       <h2>Education:</h2>
       <EducationFields 
