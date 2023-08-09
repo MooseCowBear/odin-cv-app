@@ -43,13 +43,14 @@ function App() {
   return (
     <>
      <Header /> 
-     <p>i should be the cv</p>
-     <Cv 
-      general={generalInfo}
-      education={educationInfo}
-      experience={experienceInfo}
-     />
-     <button onClick={() => {setShowForm(!showForm)}}>Edit</button>
+      <main>
+        <Cv 
+          general={generalInfo}
+          education={educationInfo}
+          experience={experienceInfo}
+        />
+        <button className="right" onClick={() => {setShowForm(!showForm)}}>Edit</button>
+      </main>
     </>
   )
 }

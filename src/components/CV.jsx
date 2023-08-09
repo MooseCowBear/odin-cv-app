@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
+import { PersonalSection } from "./Personal";
 
 export function Cv({ general, education, experience }) {
   return (
     <>
-      <div className="general-wrapper">
-        <p>{general.name}</p>
-        <p>{general.email}</p>
-        <p>{general.phone}</p>
-      </div>
+      <PersonalSection 
+        personalInfo={general}
+      />
 
       <div className="education-wrapper">
         {education.map((elem, index) => {
