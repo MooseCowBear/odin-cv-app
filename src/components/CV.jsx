@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { PersonalSection } from "./Personal";
+import { EducationSection } from "./Education";
 
 export function Cv({ general, education, experience }) {
   return (
@@ -8,22 +9,9 @@ export function Cv({ general, education, experience }) {
         personalInfo={general}
       />
 
-      <div className="education-wrapper">
-        {education.map((elem, index) => {
-          return (
-            <div className="card" key={index}>
-              <div className="header">
-                <h3>{elem.school}</h3>
-                <p>{elem.start} - {elem.end === "" ? "present" : elem.end}</p>
-              </div>
-              <div className="details">
-                <p>{elem.study}</p>
-                <p>{elem.degree}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <EducationSection
+        educationInfo={education}
+      />
 
       <div className="experience-wrapper">
         {experience.map((elem, index) => {
