@@ -19,6 +19,10 @@ function App() {
     setGeneralInfo(newValue);
   }
 
+  const updateExperience = (newValue) => {
+    setExperienceInfo(newValue);
+  }
+
   if (showForm) {
     return (
       <>
@@ -28,6 +32,8 @@ function App() {
           updateGeneral={updateGeneral}
           education={educationInfo}
           updateEducation={updateEducation}
+          experience={experienceInfo}
+          updateExperience={updateExperience}
           updateStatus={()=> {setShowForm(!showForm)}}
         />
       </>
@@ -41,6 +47,7 @@ function App() {
      <Cv 
       general={generalInfo}
       education={educationInfo}
+      experience={experienceInfo}
      />
      <button onClick={() => {setShowForm(!showForm)}}>Edit</button>
     </>

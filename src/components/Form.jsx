@@ -3,7 +3,15 @@ import PropTypes from "prop-types";
 // import { EducationFields } from "./EducationFields";
 import { useState } from "react";
 
-export function Form({ general, updateGeneral, education, updateEducation, updateStatus }) {
+export function Form({
+  general,
+  updateGeneral,
+  education,
+  updateEducation,
+  experience,
+  updateExperience,
+  updateStatus,
+}) {
   const [educationInputFields, setEducationInputFields] = useState(
     education.length > 0
       ? education
@@ -23,11 +31,11 @@ export function Form({ general, updateGeneral, education, updateEducation, updat
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log("form was submitted");
     updateGeneral(personalInfo);
     // not quite right because want to remove if object in arr only has empty string values
-    // want to do validations and cleaning here before updating
+    // want to do validations? and cleaning here before updating
     updateEducation(educationInputFields);
+    updateExperience(experienceInputFields);
     updateStatus();
   };
 
@@ -38,9 +46,40 @@ export function Form({ general, updateGeneral, education, updateEducation, updat
   const [personalInfo, setPersonalInfo] = useState(general);
 
   const updatePersonalInfo = (event) => {
-    let data = {...personalInfo};
+    let data = { ...personalInfo };
     data[event.target.name] = event.target.value;
     setPersonalInfo(data);
+  };
+
+  const [experienceInputFields, setExperienceInputFields] = useState(
+    experience.length > 0
+      ? experience
+      : [
+          {
+            company: "",
+            position: "",
+            responsibilities: "",
+            start: "",
+            end: "",
+          },
+        ]
+  );
+
+  const addExperienceFields = () => {
+    let newField = {
+      company: "",
+      position: "",
+      responsibilities: "",
+      start: "",
+      end: "",
+    };
+    setExperienceInputFields([...experienceInputFields, newField]);
+  };
+
+  const handleExperienceFormChange = (index, event) => {
+    let data = [...experienceInputFields];
+    data[index][event.target.name] = event.target.value;
+    setExperienceInputFields(data);
   };
 
   return (
@@ -112,6 +151,48 @@ export function Form({ general, updateGeneral, education, updateEducation, updat
         <button onClick={addEducationFields}>Add Another School</button>
       </div>
 
+      <h2>Experience</h2>
+      <div>
+        <p>{experienceInputFields.length}</p>
+        {experienceInputFields.map((elem, index) => {
+          return (
+            <div key={index}>
+              <input
+                name="company"
+                placeholder="Company"
+                value={elem.company}
+                onChange={(e) => handleExperienceFormChange(index, e)}
+              />
+              <input
+                name="position"
+                placeholder="Position"
+                value={elem.position}
+                onChange={(e) => handleExperienceFormChange(index, e)}
+              />
+              <textarea
+                name={"responsibilities"}
+                placeholder="Responsibilities"
+                value={elem.responsibilities}
+                onChange={(e) => handleExperienceFormChange(index, e)}
+              />
+              <input
+                name={"start"}
+                placeholder="Start YYYY"
+                value={elem.start}
+                onChange={(e) => handleExperienceFormChange(index, e)}
+              />
+              <input
+                name={"end"}
+                placeholder="End YYYY"
+                value={elem.end}
+                onChange={(e) => handleExperienceFormChange(index, e)}
+              />
+            </div>
+          );
+        })}
+        <button onClick={addExperienceFields}>Add Another Company</button>
+      </div>
+
       <input type="submit" onClick={submitForm} />
       <button onClick={cancelForm}>Cancel</button>
     </div>
@@ -123,5 +204,7 @@ Form.propTypes = {
   updateGeneral: PropTypes.func.isRequired,
   education: PropTypes.array.isRequired,
   updateEducation: PropTypes.func.isRequired,
+  experience: PropTypes.array.isRequired,
+  updateExperience: PropTypes.func.isRequired,
   updateStatus: PropTypes.func.isRequired,
 };
