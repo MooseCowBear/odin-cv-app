@@ -6,21 +6,19 @@ import "../styles/Cv.css"
 
 export function Cv({ general, education, experience }) {
   return (
-    <>
+    <div className="cv-wrapper">
       <PersonalSection 
         personalInfo={general}
       />
 
-      <h2>Education</h2>
       <EducationSection
         educationInfo={education}
       />
 
-      <h2>Experience</h2>
       <ExperienceSection
         experienceInfo={experience}
       />
-    </>
+    </div>
   );
 }
 

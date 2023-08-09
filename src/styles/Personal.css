@@ -2,11 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 5vw;
-  border-radius: 5px;
-  border: 2px solid black;
+  padding: 1.5rem 5vw;
+  background-color: var(--background-card);
 }
 
 .personal-info-wrapper h3 {
   font-size: 2rem;
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 1000px) {
+  .personal-info-wrapper {
+    grid-column: 1 / 3;
+  }
 }

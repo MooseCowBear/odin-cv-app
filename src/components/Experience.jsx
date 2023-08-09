@@ -4,6 +4,7 @@ import "../styles/Experience.css";
 export function ExperienceSection({ experienceInfo }) {
   return (
     <div className="experience-wrapper">
+      <h2>Experience</h2>
       {experienceInfo.map((elem, index) => {
         return (
           <div className="card" key={index}>

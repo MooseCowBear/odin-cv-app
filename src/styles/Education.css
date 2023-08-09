@@ -3,9 +3,6 @@
   flex-direction: column;
   align-items: space-between;
   padding: 1rem 5vw;
-  
-  border-radius: 5px;
-  border: 2px solid black;
 }
 
 .education-wrapper .details {
@@ -15,4 +12,19 @@
 
 .education-wrapper .details > .degree {
   text-transform: uppercase;
+}
+
+.education-wrapper h3 {
+  text-transform: uppercase;
+}
+
+.education-wrapper .header {
+  border-bottom: 1px solid var(--text);
+}
+
+@media only screen and (min-width: 1000px) {
+  .education-wrapper {
+    grid-column: 1 / 2;
+    padding: 1rem 1rem 1rem 5vw;
+  }
 }

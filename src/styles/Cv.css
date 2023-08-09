@@ -1,5 +1,26 @@
+.cv-wrapper {
+  --background-body: rgb(238, 238, 238, 0.8); 
+  --background: rgb(245, 245, 245);
+  --background-card: rgba(214, 214, 214, 0.8);
+  --background-card-s: rgb(245, 245, 245);
+  --background-body-t: rgb(238, 238, 238, 0.7);
+  --text: rgba(42, 42, 42);
 
-h2 {
-  line-height: 1.2;
+  border-radius: 5px;
+  background-color: var(--background);
+  color: var(--text);
+  padding: 2rem 0;
+}
+
+.cv-wrapper h2 {
   align-self: center;
+  color: inherit;
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 1000px) {
+  .cv-wrapper {
+    display: grid;
+    grid-template-columns: 4fr 7fr;
+  }
 }

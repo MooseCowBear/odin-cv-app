@@ -4,6 +4,7 @@ import "../styles/Education.css";
 export function EducationSection({ educationInfo }) {
   return (
     <div className="education-wrapper">
+      <h2>Education</h2>
       {educationInfo.map((elem, index) => {
         return (
           <div className="card" key={index}>
@@ -14,8 +15,8 @@ export function EducationSection({ educationInfo }) {
               </p>
             </div>
             <div className="details">
+              <p className="degree">{elem.degree}, </p>
               <p>{elem.study}</p>
-              <p className="degree">{elem.degree}</p>
             </div>
           </div>
         );
