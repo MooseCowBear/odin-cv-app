@@ -1,75 +1,64 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 
-export function EducationFields({ education }) {
-  const [inputFields, setInputFields] = useState([
-    { school: "", study: "", degree: "", start: "", end: "" },
-  ]);
-
-  const addFields = () => {
-    let newField = { school: "", study: "", degree: "", start: "", end: "" };
-    console.log("adding more fields");
-    setInputFields([...inputFields, newField]);
-  };
-
+export function EducationFields({ educationInputs, updateFields }) {
   const handleFormChange = (index, event) => {
-    let data = [...inputFields];
+    let data = [...educationInputs];
     data[index][event.target.name] = event.target.value;
-    setInputFields(data);
+    updateFields(data);
   };
 
-  if (education.length > 0) {
-    console.log("updating fields to current education");
-    setInputFields(structuredClone(education));
-  }
-
-  console.log("input fields:", inputFields);
+  const addEducationFields = () => {
+    let newField = { school: "", study: "", degree: "", start: "", end: "" };
+    updateFields([...educationInputs, newField]);
+  };
 
   return (
     <div>
-      <p>{inputFields.length}</p>
-      {inputFields.map((elem, index) => {
+      <p>{educationInputs.length}</p>
+      {educationInputs.map((elem, index) => {
         return (
           <div key={index}>
+            <label>School:</label>
             <input
-              name={"school"}
-              placeholder="School"
+              name="school"
               value={elem.school}
               onChange={(e) => handleFormChange(index, e)}
             />
+            <label>Course of Study:</label>
             <input
               name={"study"}
-              placeholder="Course of Study"
               value={elem.study}
               onChange={(e) => handleFormChange(index, e)}
             />
+            <label>Degree:</label>
             <input
               name={"degree"}
-              placeholder="Degree"
               value={elem.degree}
               onChange={(e) => handleFormChange(index, e)}
             />
+            <label>Start Year:</label>
             <input
               name={"start"}
-              placeholder="Start YYYY"
+              placeholder="YYYY"
               value={elem.start}
               onChange={(e) => handleFormChange(index, e)}
             />
+            <label>End Year:</label>
             <input
               name={"end"}
-              placeholder="End YYYY"
+              placeholder="YYYY"
               value={elem.end}
               onChange={(e) => handleFormChange(index, e)}
             />
           </div>
         );
       })}
-      <button onClick={addFields}>Add Another School</button>
+      <button onClick={addEducationFields}>Add Another School</button>
     </div>
   );
 }
 
 EducationFields.propTypes = {
-  education: PropTypes.array.isRequired,
-  update: PropTypes.func.isRequired
+  educationInputs: PropTypes.array.isRequired,
+  updateFields: PropTypes.func.isRequired
 };

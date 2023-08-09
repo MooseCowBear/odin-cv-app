@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 // import { PersonalInfoFields } from "./PersonalInfoFields";
-// import { EducationFields } from "./EducationFields";
 import { useState } from "react";
+import { EducationFields } from "./EducationFields";
 
 export function Form({
   general,
@@ -91,6 +91,11 @@ export function Form({
     return true;
   }
 
+  // for component...
+  const updateEducationFields = (newValue) => {
+    setEducationInputFields(newValue);
+  }
+
   return (
     <div>
       <h2>Personal Info:</h2>
@@ -119,46 +124,10 @@ export function Form({
       </div>
 
       <h2>Education:</h2>
-      <div>
-        <p>{educationInputFields.length}</p>
-        {educationInputFields.map((elem, index) => {
-          return (
-            <div key={index}>
-              <input
-                name={"school"}
-                placeholder="School"
-                value={elem.school}
-                onChange={(e) => handleFormChange(index, e)}
-              />
-              <input
-                name={"study"}
-                placeholder="Course of Study"
-                value={elem.study}
-                onChange={(e) => handleFormChange(index, e)}
-              />
-              <input
-                name={"degree"}
-                placeholder="Degree"
-                value={elem.degree}
-                onChange={(e) => handleFormChange(index, e)}
-              />
-              <input
-                name={"start"}
-                placeholder="Start YYYY"
-                value={elem.start}
-                onChange={(e) => handleFormChange(index, e)}
-              />
-              <input
-                name={"end"}
-                placeholder="End YYYY"
-                value={elem.end}
-                onChange={(e) => handleFormChange(index, e)}
-              />
-            </div>
-          );
-        })}
-        <button onClick={addEducationFields}>Add Another School</button>
-      </div>
+      <EducationFields 
+        educationInputs={educationInputFields}
+        updateFields={updateEducationFields}
+      />
 
       <h2>Experience</h2>
       <div>
