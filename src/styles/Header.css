@@ -6,6 +6,7 @@
 
 .header h2 {
   font-size: 3rem;
+  text-transform: uppercase;
   margin: 0;
   padding: 0;
 }
