@@ -36,6 +36,7 @@ function App() {
      <Cv 
       education={educationInfo}
      />
+     <button onClick={() => {setShowForm(!showForm)}}>Edit</button>
     </>
   )
 }

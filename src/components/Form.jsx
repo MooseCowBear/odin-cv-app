@@ -7,10 +7,11 @@ export function Form({ general, education, updateEducation, updateStatus }) {
   // going to need callbacks passed to children so that they can return their info to form
   // form will do the updating to app states with its own callbacks...
 
-  const [educationInputFields, setEducationInputFields] = useState([
-    { school: "", study: "", degree: "", start: "", end: "" },
-  ]);
-
+  const [educationInputFields, setEducationInputFields] = useState(
+    education.length > 0
+      ? education
+      : [{ school: "", study: "", degree: "", start: "", end: "" }]
+  );
 
   const addEducationFields = () => {
     let newField = { school: "", study: "", degree: "", start: "", end: "" };
@@ -21,15 +22,8 @@ export function Form({ general, education, updateEducation, updateStatus }) {
   const handleFormChange = (index, event) => {
     let data = [...educationInputFields];
     data[index][event.target.name] = event.target.value;
-    setEducationInputFields(data); 
-
+    setEducationInputFields(data);
   };
-
-  // is this right? 
-  if (education.length > 0) {
-    console.log("updating fields to current education");
-    setEducationInputFields(education);
-  }
 
   console.log("education input fields:", educationInputFields);
 
@@ -38,6 +32,11 @@ export function Form({ general, education, updateEducation, updateStatus }) {
     console.log("form was submitted");
     // not quite right because want to remove if object only has empty string values
     updateEducation(educationInputFields);
+    updateStatus();
+  };
+
+  const cancelForm = () => {
+    console.log("form was canceled");
     updateStatus();
   }
 
@@ -88,6 +87,7 @@ export function Form({ general, education, updateEducation, updateStatus }) {
       </div>
 
       <input type="submit" onClick={submitForm} />
+      <button onClick={cancelForm}>Cancel</button>
     </div>
   );
 }
@@ -96,5 +96,5 @@ Form.propTypes = {
   general: PropTypes.object.isRequired,
   education: PropTypes.array.isRequired,
   updateEducation: PropTypes.func.isRequired,
-  updateStatus: PropTypes.func.isRequired
+  updateStatus: PropTypes.func.isRequired,
 };
