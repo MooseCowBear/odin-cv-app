@@ -25,7 +25,7 @@ export function Form({
 
   const handleFormChange = (index, event) => {
     let data = [...educationInputFields];
-    data[index][event.target.name] = event.target.value;
+    data[index][event.target.name] = event.target.value.trim();
     setEducationInputFields(data);
   };
 
@@ -34,8 +34,8 @@ export function Form({
     updateGeneral(personalInfo);
     // not quite right because want to remove if object in arr only has empty string values
     // want to do validations? and cleaning here before updating
-    updateEducation(educationInputFields);
-    updateExperience(experienceInputFields);
+    updateEducation(educationInputFields.filter(elem => !isEmpty(elem)));
+    updateExperience(experienceInputFields.filter(elem => !isEmpty(elem)));
     updateStatus();
   };
 
@@ -47,7 +47,7 @@ export function Form({
 
   const updatePersonalInfo = (event) => {
     let data = { ...personalInfo };
-    data[event.target.name] = event.target.value;
+    data[event.target.name] = event.target.value.trim();
     setPersonalInfo(data);
   };
 
@@ -78,9 +78,18 @@ export function Form({
 
   const handleExperienceFormChange = (index, event) => {
     let data = [...experienceInputFields];
-    data[index][event.target.name] = event.target.value;
+    data[index][event.target.name] = event.target.value.trim();
     setExperienceInputFields(data);
   };
+
+  const isEmpty = (object) => {
+    for (const [ , value] of Object.entries(object)) {
+      if (value !== "") {
+        return false;
+      }
+    }
+    return true;
+  }
 
   return (
     <div>
