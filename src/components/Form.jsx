@@ -1,12 +1,9 @@
 import PropTypes from "prop-types";
-import { PersonalInfoFields } from "./PersonalInfoFields";
+// import { PersonalInfoFields } from "./PersonalInfoFields";
 // import { EducationFields } from "./EducationFields";
 import { useState } from "react";
 
-export function Form({ general, education, updateEducation, updateStatus }) {
-  // going to need callbacks passed to children so that they can return their info to form
-  // form will do the updating to app states with its own callbacks...
-
+export function Form({ general, updateGeneral, education, updateEducation, updateStatus }) {
   const [educationInputFields, setEducationInputFields] = useState(
     education.length > 0
       ? education
@@ -30,7 +27,8 @@ export function Form({ general, education, updateEducation, updateStatus }) {
   const submitForm = (e) => {
     e.preventDefault();
     console.log("form was submitted");
-    // not quite right because want to remove if object only has empty string values
+    updateGeneral(personalInfo[0]);
+    // not quite right because want to remove if object in arr only has empty string values
     updateEducation(educationInputFields);
     updateStatus();
   };
@@ -38,12 +36,50 @@ export function Form({ general, education, updateEducation, updateStatus }) {
   const cancelForm = () => {
     console.log("form was canceled");
     updateStatus();
-  }
+  };
+
+  const [personalInfo, setPersonalInfo] = useState([general]);
+
+  console.log(personalInfo);
+
+  const updatePersonalInfo = (event) => {
+    // why didn't this work without being wrapped in an array?
+    let data = [...personalInfo];
+    data[0][event.target.name] = event.target.value;
+    setPersonalInfo(data);
+  };
 
   return (
     <div>
       <h2>Personal Info:</h2>
-      <PersonalInfoFields general={general} />
+      {personalInfo.map((elem, index) => {
+        return (
+          <div key={index}>
+            <label htmlFor="name">Name:</label>
+            <input
+              name="name"
+              type="text"
+              value={elem.name}
+              onChange={(e) => updatePersonalInfo(e)}
+            ></input>
+            <label htmlFor="email">Email:</label>
+            <input
+              name="email"
+              type="email"
+              value={elem.email}
+              onChange={(e) => updatePersonalInfo(e)}
+            ></input>
+            <label htmlFor="phone">Phone Number:</label>
+            <input
+              name="phone"
+              type="tel"
+              value={elem.phone}
+              onChange={(e) => updatePersonalInfo(e)}
+            ></input>
+          </div>
+        );
+      })}
+
       <h2>Education:</h2>
       <div>
         <p>{educationInputFields.length}</p>
@@ -94,6 +130,7 @@ export function Form({ general, education, updateEducation, updateStatus }) {
 
 Form.propTypes = {
   general: PropTypes.object.isRequired,
+  updateGeneral: PropTypes.func.isRequired,
   education: PropTypes.array.isRequired,
   updateEducation: PropTypes.func.isRequired,
   updateStatus: PropTypes.func.isRequired,

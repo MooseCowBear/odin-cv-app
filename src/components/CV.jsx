@@ -1,8 +1,13 @@
 import PropTypes from "prop-types";
 
-export function Cv({ education }) {
+export function Cv({ general, education }) {
   return (
     <>
+      <div className="general-wrapper">
+        <p>{general.name}</p>
+        <p>{general.email}</p>
+        <p>{general.phone}</p>
+      </div>
       <div className="education-wrapper">
       {education.map((elem, index) => {
         return (
@@ -21,5 +26,6 @@ export function Cv({ education }) {
 }
 
 Cv.propTypes = {
+  general: PropTypes.object.isRequired,
   education: PropTypes.array.isRequired,
 };

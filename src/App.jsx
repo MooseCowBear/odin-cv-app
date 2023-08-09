@@ -7,12 +7,16 @@ import './App.css'
 
 function App() {
   const [showForm, setShowForm] = useState(true);
-  const [generalInfo, setGeneralInfo] = useState({});
+  const [generalInfo, setGeneralInfo] = useState({name: '', email: '', phone: ''});
   const [educationInfo, setEducationInfo] = useState([]);
   const [experienceInfo, setExperienceInfo] = useState([]);
 
   const updateEducation = (newValue) => {
     setEducationInfo(newValue);
+  }
+
+  const updateGeneral = (newValue) => {
+    setGeneralInfo(newValue);
   }
 
   if (showForm) {
@@ -21,6 +25,7 @@ function App() {
         <Header />
         <Form 
           general={generalInfo}
+          updateGeneral={updateGeneral}
           education={educationInfo}
           updateEducation={updateEducation}
           updateStatus={()=> {setShowForm(!showForm)}}
@@ -34,6 +39,7 @@ function App() {
      <Header /> 
      <p>i should be the cv</p>
      <Cv 
+      general={generalInfo}
       education={educationInfo}
      />
      <button onClick={() => {setShowForm(!showForm)}}>Edit</button>
