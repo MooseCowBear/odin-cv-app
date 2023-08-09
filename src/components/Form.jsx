@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { EducationFields } from "./EducationFields";
 import { PersonalFields } from "./PersonalFields";
+import { ExperienceFields } from "./ExperienceFields";
 
 export function Form({
   general,
@@ -34,23 +35,6 @@ export function Form({
         ]
   );
 
-  const addExperienceFields = () => {
-    let newField = {
-      company: "",
-      position: "",
-      responsibilities: "",
-      start: "",
-      end: "",
-    };
-    setExperienceInputFields([...experienceInputFields, newField]);
-  };
-
-  const handleExperienceFormChange = (index, event) => {
-    let data = [...experienceInputFields];
-    data[index][event.target.name] = event.target.value;
-    setExperienceInputFields(data);
-  };
-
   const isEmpty = (object) => {
     for (const [ , value] of Object.entries(object)) {
       if (value !== "") {
@@ -60,7 +44,6 @@ export function Form({
     return true;
   }
 
-  // for component...
   const updateEducationFields = (newValue) => {
     setEducationInputFields(newValue);
   }
@@ -69,7 +52,9 @@ export function Form({
     setPersonalInfo(newValue);
   }
 
-  // end callbacks for components
+  const updateExperienceFields = (newValue) => {
+    setExperienceInputFields(newValue);
+  }
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -100,46 +85,10 @@ export function Form({
       />
 
       <h2>Experience</h2>
-      <div>
-        <p>{experienceInputFields.length}</p>
-        {experienceInputFields.map((elem, index) => {
-          return (
-            <div key={index}>
-              <input
-                name="company"
-                placeholder="Company"
-                value={elem.company}
-                onChange={(e) => handleExperienceFormChange(index, e)}
-              />
-              <input
-                name="position"
-                placeholder="Position"
-                value={elem.position}
-                onChange={(e) => handleExperienceFormChange(index, e)}
-              />
-              <textarea
-                name={"responsibilities"}
-                placeholder="Responsibilities"
-                value={elem.responsibilities}
-                onChange={(e) => handleExperienceFormChange(index, e)}
-              />
-              <input
-                name={"start"}
-                placeholder="Start YYYY"
-                value={elem.start}
-                onChange={(e) => handleExperienceFormChange(index, e)}
-              />
-              <input
-                name={"end"}
-                placeholder="End YYYY"
-                value={elem.end}
-                onChange={(e) => handleExperienceFormChange(index, e)}
-              />
-            </div>
-          );
-        })}
-        <button onClick={addExperienceFields}>Add Another Company</button>
-      </div>
+      <ExperienceFields
+        experienceInputs={experienceInputFields}
+        updateFields={updateExperienceFields}
+      />
 
       <input type="submit" onClick={submitForm} />
       <button onClick={cancelForm}>Cancel</button>
