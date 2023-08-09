@@ -25,7 +25,7 @@ export function Form({
 
   const handleFormChange = (index, event) => {
     let data = [...educationInputFields];
-    data[index][event.target.name] = event.target.value.trim();
+    data[index][event.target.name] = event.target.value;
     setEducationInputFields(data);
   };
 
@@ -47,7 +47,7 @@ export function Form({
 
   const updatePersonalInfo = (event) => {
     let data = { ...personalInfo };
-    data[event.target.name] = event.target.value.trim();
+    data[event.target.name] = event.target.value;
     setPersonalInfo(data);
   };
 
@@ -78,7 +78,7 @@ export function Form({
 
   const handleExperienceFormChange = (index, event) => {
     let data = [...experienceInputFields];
-    data[index][event.target.name] = event.target.value.trim();
+    data[index][event.target.name] = event.target.value;
     setExperienceInputFields(data);
   };
 
