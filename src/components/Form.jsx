@@ -12,7 +12,6 @@ export function Form({ general, updateGeneral, education, updateEducation, updat
 
   const addEducationFields = () => {
     let newField = { school: "", study: "", degree: "", start: "", end: "" };
-    console.log("adding more fields");
     setEducationInputFields([...educationInputFields, newField]);
   };
 
@@ -22,63 +21,54 @@ export function Form({ general, updateGeneral, education, updateEducation, updat
     setEducationInputFields(data);
   };
 
-  console.log("education input fields:", educationInputFields);
-
   const submitForm = (e) => {
     e.preventDefault();
     console.log("form was submitted");
-    updateGeneral(personalInfo[0]);
+    updateGeneral(personalInfo);
     // not quite right because want to remove if object in arr only has empty string values
+    // want to do validations and cleaning here before updating
     updateEducation(educationInputFields);
     updateStatus();
   };
 
   const cancelForm = () => {
-    console.log("form was canceled");
     updateStatus();
   };
 
-  const [personalInfo, setPersonalInfo] = useState([general]);
-
-  console.log(personalInfo);
+  const [personalInfo, setPersonalInfo] = useState(general);
 
   const updatePersonalInfo = (event) => {
-    // why didn't this work without being wrapped in an array?
-    let data = [...personalInfo];
-    data[0][event.target.name] = event.target.value;
+    let data = {...personalInfo};
+    data[event.target.name] = event.target.value;
     setPersonalInfo(data);
   };
 
   return (
     <div>
       <h2>Personal Info:</h2>
-      {personalInfo.map((elem, index) => {
-        return (
-          <div key={index}>
-            <label htmlFor="name">Name:</label>
-            <input
-              name="name"
-              type="text"
-              value={elem.name}
-              onChange={(e) => updatePersonalInfo(e)}
-            ></input>
-            <label htmlFor="email">Email:</label>
-            <input
-              name="email"
-              type="email"
-              value={elem.email}
-              onChange={(e) => updatePersonalInfo(e)}
-            ></input>
-            <label htmlFor="phone">Phone Number:</label>
-            <input
-              name="phone"
-              type="tel"
-              value={elem.phone}
-              onChange={(e) => updatePersonalInfo(e)}
-            ></input>
-          </div>
-        );
-      })}
+      <div>
+        <label htmlFor="name">Name:</label>
+        <input
+          name="name"
+          type="text"
+          value={personalInfo.name}
+          onChange={(e) => updatePersonalInfo(e)}
+        ></input>
+        <label htmlFor="email">Email:</label>
+        <input
+          name="email"
+          type="email"
+          value={personalInfo.email}
+          onChange={(e) => updatePersonalInfo(e)}
+        ></input>
+        <label htmlFor="phone">Phone Number:</label>
+        <input
+          name="phone"
+          type="tel"
+          value={personalInfo.phone}
+          onChange={(e) => updatePersonalInfo(e)}
+        ></input>
+      </div>
 
       <h2>Education:</h2>
       <div>
