@@ -81,15 +81,15 @@ export function Form({
   };
 
   return (
-    <div className="form">
+    <form className="form" onSubmit={submitForm}>
       <h2>Personal Info:</h2>
-      <PersonalFields 
+      <PersonalFields
         personalInput={personalInfo}
         updateInput={updatePersonal}
       />
 
       <h2>Education:</h2>
-      <EducationFields 
+      <EducationFields
         educationInputs={educationInputFields}
         updateFields={updateEducationFields}
       />
@@ -101,14 +101,13 @@ export function Form({
       />
 
       <h2>Skills:</h2>
-      <SkillsFields 
-        skillsInput={skillsInfo}
-        updateInput={updateSkills}
-      />
+      <SkillsFields skillsInput={skillsInfo} updateInput={updateSkills} />
 
-      <input type="submit" onClick={submitForm}/>
-      <button className="button-cancel" onClick={cancelForm}>Cancel</button>
-    </div>
+      <input type="submit" />
+      <button className="button-cancel" onClick={cancelForm}>
+        Cancel
+      </button>
+    </form>
   );
 }
 

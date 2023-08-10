@@ -79,6 +79,7 @@ export function ExperienceFields({ experienceInputs, updateFields }) {
               />
             </div>
             <button
+              type="button"
               className="button-remove"
               onClick={() => {
                 removeFields(index);
@@ -89,7 +90,9 @@ export function ExperienceFields({ experienceInputs, updateFields }) {
           </div>
         );
       })}
-      <button onClick={addExperienceFields}>Add Another Company</button>
+      <button type="button" onClick={addExperienceFields}>
+        Add Another Company
+      </button>
     </>
   );
 }

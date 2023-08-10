@@ -74,6 +74,7 @@ export function EducationFields({ educationInputs, updateFields }) {
               </div>
             </div>
             <button
+              type="button"
               className="button-remove"
               onClick={() => {
                 removeFields(index);
@@ -85,7 +86,7 @@ export function EducationFields({ educationInputs, updateFields }) {
         );
       })}
       </div>
-      <button onClick={addEducationFields}>Add Another School</button>
+      <button type="button" onClick={addEducationFields}>Add Another School</button>
     </>
   );
 }
