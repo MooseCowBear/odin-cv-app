@@ -46,6 +46,17 @@ textarea {
   align-self: center;
 }
 
+.form-section-wrapper > div, 
+.experience-form-section-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem
+}
+
+.button-remove {
+  align-self: flex-end;
+}
+
 
 @media (prefers-color-scheme: dark) {
   .input-wrapper.textarea,

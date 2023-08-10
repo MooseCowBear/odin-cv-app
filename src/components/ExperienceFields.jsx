@@ -18,12 +18,18 @@ export function ExperienceFields({ experienceInputs, updateFields }) {
     updateFields([...experienceInputs, newField]);
   };
 
+  const removeFields = (index) => {
+    let data = [...experienceInputs];
+    data.splice(index, 1);
+    updateFields(data);
+  };
+
   return (
     <>
       {experienceInputs.map((elem, index) => {
         return (
-          <>
-            <div className="form-section" key={index}>
+          <div key={index} className="experience-form-section-wrapper">
+            <div className="form-section">
               <div className="input-wrapper">
                 <label>Company/Organization:</label>
                 <input
@@ -68,7 +74,15 @@ export function ExperienceFields({ experienceInputs, updateFields }) {
                 onChange={(e) => handleFormChange(index, e)}
               />
             </div>
-          </>
+            <button
+              className="button-remove"
+              onClick={() => {
+                removeFields(index);
+              }}
+            >
+              Remove
+            </button>
+          </div>
         );
       })}
       <button onClick={addExperienceFields}>Add Another Company</button>
@@ -78,5 +92,5 @@ export function ExperienceFields({ experienceInputs, updateFields }) {
 
 ExperienceFields.propTypes = {
   experienceInputs: PropTypes.array.isRequired,
-  updateFields: PropTypes.func.isRequired
+  updateFields: PropTypes.func.isRequired,
 };
