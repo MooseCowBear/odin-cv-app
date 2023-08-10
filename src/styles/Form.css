@@ -1,8 +1,4 @@
 .form {
-  --background: rgb(245, 245, 245);
-  --text: rgba(42, 42, 42);
-  --text-t: rgba(42, 42, 42, 0.8);
-
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

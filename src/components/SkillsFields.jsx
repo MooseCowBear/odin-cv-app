@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 
 export function SkillsFields({ skillsInput, updateInput }) {
   const updateSkillsInfo = (event) => {
-    // let data = skillsInput;
     let data = event.target.value;
     updateInput(data);
   };

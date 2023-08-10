@@ -1,4 +1,9 @@
 :root {
+  --background: rgb(245, 245, 245);
+  --background-card: rgba(214, 214, 214, 0.8);
+  --text: rgba(42, 42, 42);
+  --text-t: rgba(42, 42, 42, 0.8);
+
   line-height: 1.5;
   font-weight: 400;
 
@@ -65,4 +70,6 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+
+  /* need to adjust this */
 }

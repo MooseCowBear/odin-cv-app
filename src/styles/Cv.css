@@ -1,8 +1,4 @@
 .cv-wrapper {
-  --background: rgb(245, 245, 245);
-  --background-card: rgba(214, 214, 214, 0.8);
-  --text: rgba(42, 42, 42);
-
   border-radius: 5px;
   background-color: var(--background);
   color: var(--text);
