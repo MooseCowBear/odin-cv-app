@@ -15,3 +15,6 @@ This is an implementation of the [Odin Project's](https://www.theodinproject.com
 
 ### Screenshots
 
+![alt text](screenshots/cv_builder_form.png "form")
+
+![alt text](screenshots/cv.png "output cv")
