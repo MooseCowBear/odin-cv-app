@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: space-between;
   padding: 1rem 5vw;
+  gap: 1rem;
 }
 
 .education-wrapper .details {

@@ -81,7 +81,7 @@ export function Form({
   };
 
   return (
-    <form className="form" onSubmit={submitForm}>
+    <div className="form">
       <h2>Personal Info:</h2>
       <PersonalFields 
         personalInput={personalInfo}
@@ -106,9 +106,9 @@ export function Form({
         updateInput={updateSkills}
       />
 
-      <input type="submit" />
+      <input type="submit" onClick={submitForm}/>
       <button className="button-cancel" onClick={cancelForm}>Cancel</button>
-    </form>
+    </div>
   );
 }
 

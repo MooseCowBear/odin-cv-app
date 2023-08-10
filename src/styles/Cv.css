@@ -15,5 +15,6 @@
   .cv-wrapper {
     display: grid;
     grid-template-columns: 4fr 7fr; /* only want this if experience has at least 2 things */
+    
   }
 }
