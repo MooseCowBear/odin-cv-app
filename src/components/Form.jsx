@@ -67,10 +67,9 @@ export function Form({
   }
 
   const submitForm = (e) => {
+    // this is where validations would be...
     e.preventDefault();
     updateGeneral(personalInfo);
-    // not quite right because want to remove if object in arr only has empty string values
-    // want to do validations? and cleaning here before updating
     updateEducation(educationInputFields.filter((elem) => !isEmpty(elem)));
     updateExperience(experienceInputFields.filter((elem) => !isEmpty(elem)));
     updateSkillsInfo(skillsInfo);
