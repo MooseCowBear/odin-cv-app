@@ -67,4 +67,10 @@ textarea {
   h2 {
     color: var(--text-dark);
   }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    border: 1px solid var(--background-card);
+  }
 }

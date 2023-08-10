@@ -33,6 +33,7 @@ export function ExperienceFields({ experienceInputs, updateFields }) {
               <div className="input-wrapper">
                 <label>Company/Organization:</label>
                 <input
+                  type="text"
                   name="company"
                   value={elem.company}
                   onChange={(e) => handleFormChange(index, e)}
@@ -41,6 +42,7 @@ export function ExperienceFields({ experienceInputs, updateFields }) {
               <div className="input-wrapper">
                 <label>Position:</label>
                 <input
+                  type="text"
                   name="position"
                   value={elem.position}
                   onChange={(e) => handleFormChange(index, e)}
@@ -50,6 +52,7 @@ export function ExperienceFields({ experienceInputs, updateFields }) {
               <div className="input-wrapper">
                 <label>Start:</label>
                 <input
+                  type="text"
                   name={"start"}
                   placeholder="YYYY"
                   value={elem.start}
@@ -59,6 +62,7 @@ export function ExperienceFields({ experienceInputs, updateFields }) {
               <div className="input-wrapper">
                 <label>End:</label>
                 <input
+                  type="text"
                   name={"end"}
                   placeholder="YYYY"
                   value={elem.end}

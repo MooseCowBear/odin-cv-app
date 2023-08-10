@@ -28,6 +28,7 @@ export function EducationFields({ educationInputs, updateFields }) {
               <div className="input-wrapper">
                 <label>School:</label>
                 <input
+                  type="text"
                   name="school"
                   value={elem.school}
                   onChange={(e) => handleFormChange(index, e)}
@@ -36,6 +37,7 @@ export function EducationFields({ educationInputs, updateFields }) {
               <div className="input-wrapper">
                 <label>Course of Study:</label>
                 <input
+                  type="text"
                   name={"study"}
                   value={elem.study}
                   onChange={(e) => handleFormChange(index, e)}
@@ -44,6 +46,7 @@ export function EducationFields({ educationInputs, updateFields }) {
               <div className="input-wrapper">
                 <label>Degree:</label>
                 <input
+                  type="text"
                   name={"degree"}
                   value={elem.degree}
                   onChange={(e) => handleFormChange(index, e)}
@@ -52,6 +55,7 @@ export function EducationFields({ educationInputs, updateFields }) {
               <div className="input-wrapper">
                 <label>Start Year:</label>
                 <input
+                  type="text"
                   name={"start"}
                   placeholder="YYYY"
                   value={elem.start}
@@ -61,6 +65,7 @@ export function EducationFields({ educationInputs, updateFields }) {
               <div className="input-wrapper">
                 <label>End Year:</label>
                 <input
+                  type="text"
                   name={"end"}
                   placeholder="YYYY"
                   value={elem.end}
