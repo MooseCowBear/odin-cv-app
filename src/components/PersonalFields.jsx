@@ -9,28 +9,34 @@ export function PersonalFields({ personalInput, updateInput }) {
   };
 
   return (
-    <div>
-      <label htmlFor="name">Name:</label>
-      <input
-        name="name"
-        type="text"
-        value={personalInput.name}
-        onChange={(e) => updatePersonalInfo(e)}
-      ></input>
-      <label htmlFor="email">Email:</label>
-      <input
-        name="email"
-        type="email"
-        value={personalInput.email}
-        onChange={(e) => updatePersonalInfo(e)}
-      ></input>
-      <label htmlFor="phone">Phone Number:</label>
-      <input
-        name="phone"
-        type="tel"
-        value={personalInput.phone}
-        onChange={(e) => updatePersonalInfo(e)}
-      ></input>
+    <div className="form-section">
+      <div className="input-wrapper">
+        <label htmlFor="name">Name:</label>
+        <input
+          name="name"
+          type="text"
+          value={personalInput.name}
+          onChange={(e) => updatePersonalInfo(e)}
+        ></input>
+      </div>
+      <div className="input-wrapper">
+        <label htmlFor="email">Email:</label>
+        <input
+          name="email"
+          type="email"
+          value={personalInput.email}
+          onChange={(e) => updatePersonalInfo(e)}
+        ></input>
+      </div>
+      <div className="input-wrapper">
+        <label htmlFor="phone">Phone Number:</label>
+        <input
+          name="phone"
+          type="tel"
+          value={personalInput.phone}
+          onChange={(e) => updatePersonalInfo(e)}
+        ></input>
+      </div>
     </div>
   );
 }

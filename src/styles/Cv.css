@@ -1,9 +1,6 @@
 .cv-wrapper {
-  --background-body: rgb(238, 238, 238, 0.8); 
   --background: rgb(245, 245, 245);
   --background-card: rgba(214, 214, 214, 0.8);
-  --background-card-s: rgb(245, 245, 245);
-  --background-body-t: rgb(238, 238, 238, 0.7);
   --text: rgba(42, 42, 42);
 
   border-radius: 5px;
@@ -21,6 +18,6 @@
 @media only screen and (min-width: 1000px) {
   .cv-wrapper {
     display: grid;
-    grid-template-columns: 4fr 7fr;
+    grid-template-columns: 4fr 7fr; /* only want this if experience has at least 2 things */
   }
 }

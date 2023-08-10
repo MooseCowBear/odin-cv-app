@@ -10,6 +10,7 @@ function App() {
   const [generalInfo, setGeneralInfo] = useState({name: '', email: '', phone: ''});
   const [educationInfo, setEducationInfo] = useState([]);
   const [experienceInfo, setExperienceInfo] = useState([]);
+  const [skillsInfo, setSkillsInfo] = useState("");
 
   const updateEducation = (newValue) => {
     setEducationInfo(newValue);
@@ -21,6 +22,10 @@ function App() {
 
   const updateExperience = (newValue) => {
     setExperienceInfo(newValue);
+  }
+
+  const updateSkills = (newValue) => {
+    setSkillsInfo(newValue);
   }
 
   if (showForm) {
@@ -35,6 +40,8 @@ function App() {
           experience={experienceInfo}
           updateExperience={updateExperience}
           updateStatus={()=> {setShowForm(!showForm)}}
+          skills={skillsInfo}
+          updateSkillsInfo={updateSkills}
         />
       </>
     );
@@ -48,6 +55,7 @@ function App() {
           general={generalInfo}
           education={educationInfo}
           experience={experienceInfo}
+          skills={skillsInfo}
         />
         <button className="right" onClick={() => {setShowForm(!showForm)}}>Edit</button>
       </main>

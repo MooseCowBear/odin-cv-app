@@ -3,6 +3,8 @@ import { useState } from "react";
 import { EducationFields } from "./EducationFields";
 import { PersonalFields } from "./PersonalFields";
 import { ExperienceFields } from "./ExperienceFields";
+import { SkillsFields } from "./SkillsFields";
+import "../styles/Form.css";
 
 export function Form({
   general,
@@ -12,6 +14,8 @@ export function Form({
   experience,
   updateExperience,
   updateStatus,
+  skills,
+  updateSkillsInfo
 }) {
   const [educationInputFields, setEducationInputFields] = useState(
     education.length > 0
@@ -35,6 +39,8 @@ export function Form({
         ]
   );
 
+  const [skillsInfo, setSkillsInfo] = useState(skills);
+
   const isEmpty = (object) => {
     for (const [ , value] of Object.entries(object)) {
       if (value !== "") {
@@ -56,6 +62,10 @@ export function Form({
     setExperienceInputFields(newValue);
   }
 
+  const updateSkills = (newValue) => {
+    setSkillsInfo(newValue);
+  }
+
   const submitForm = (e) => {
     e.preventDefault();
     updateGeneral(personalInfo);
@@ -63,6 +73,7 @@ export function Form({
     // want to do validations? and cleaning here before updating
     updateEducation(educationInputFields.filter((elem) => !isEmpty(elem)));
     updateExperience(experienceInputFields.filter((elem) => !isEmpty(elem)));
+    updateSkillsInfo(skillsInfo);
     updateStatus();
   };
 
@@ -71,7 +82,7 @@ export function Form({
   };
 
   return (
-    <div>
+    <div className="form">
       <h2>Personal Info:</h2>
       <PersonalFields 
         personalInput={personalInfo}
@@ -84,14 +95,20 @@ export function Form({
         updateFields={updateEducationFields}
       />
 
-      <h2>Experience</h2>
+      <h2>Experience:</h2>
       <ExperienceFields
         experienceInputs={experienceInputFields}
         updateFields={updateExperienceFields}
       />
 
+      <h2>Skills:</h2>
+      <SkillsFields 
+        skillsInput={skillsInfo}
+        updateInput={updateSkills}
+      />
+
       <input type="submit" onClick={submitForm} />
-      <button onClick={cancelForm}>Cancel</button>
+      <button className="button-cancel" onClick={cancelForm}>Cancel</button>
     </div>
   );
 }
@@ -104,4 +121,6 @@ Form.propTypes = {
   experience: PropTypes.array.isRequired,
   updateExperience: PropTypes.func.isRequired,
   updateStatus: PropTypes.func.isRequired,
+  skills: PropTypes.string.isRequired,
+  updateSkillsInfo: PropTypes.func.isRequired
 };
