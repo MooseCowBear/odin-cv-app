@@ -46,32 +46,14 @@ textarea {
   align-self: center;
 }
 
-input[type="submit"] {
-  padding: 0.8rem;
-  background-color: var(--background);
-  border-radius: 5px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
 
-input[type="submit"]:hover, 
-input[type="submit"]:focus {
-  background-color: var(--text-t);
-  color: var(--background);
-}
-
-.form button {
-  padding: 0.5rem;
-  background-color: var(--background);
-  border-radius: 5px;
-  cursor: pointer;
-  border: 1px solid transparent;
-}
-
-.form button:hover, 
-.form button:focus {
-  background-color: var(--text-t);
-  color: var(--background);
+@media (prefers-color-scheme: dark) {
+  .input-wrapper.textarea,
+  .form-section {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+  }
+  h2 {
+    color: var(--text-dark);
+  }
 }
