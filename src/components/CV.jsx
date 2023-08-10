@@ -3,7 +3,7 @@ import { PersonalSection } from "./Personal";
 import { EducationSection } from "./Education";
 import { ExperienceSection } from "./Experience";
 import "../styles/Cv.css"
-import { SkillsSection } from "./Skills";
+import { SkillsSection } from "./Skills";  
 
 export function Cv({ general, education, experience, skills }) {
   return (
